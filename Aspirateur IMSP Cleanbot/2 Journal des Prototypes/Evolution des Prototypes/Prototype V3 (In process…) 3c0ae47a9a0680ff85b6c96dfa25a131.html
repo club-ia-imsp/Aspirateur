@@ -1,0 +1,811 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Prototype V3 (In process…)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3c0ae47a-9a06-80ff-85b6-c96dfa25a131" class="page sans"><header><h1 class="page-title" dir="auto">Prototype V3 (In process…)</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created</th><td><time datetime="2026-08-18T07:04">August 18, 2026 7:04 AM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Status</th><td><span class="status-value select-value-color-blue"><div class="status-dot status-dot-color-blue"></div>In progress</span></td></tr></tbody></table></header><div class="page-body"><h2 id="3c0ae47a-9a06-80c1-85b7-e5ea6587b061" class="" dir="auto">🎯 Objectifs de cette version</h2><p id="3c5ae47a-9a06-808c-92c6-ef6e1bf3b562" class="" dir="auto">Le prototype V3 vise à corriger les faiblesses techniques identifiées sur les prototypes précédents afin d’obtenir une solution d&#x27;aspiration réellement efficace, compacte et fiable.</p><p id="3c8ae47a-9a06-8006-b0ce-c1dd2da5b4f9" class="" dir="auto"> Les priorités s&#x27;articulent autour de quatre axes majeurs : </p><ul id="3c8ae47a-9a06-80e3-8174-c021c84b46aa" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Optimiser l&#x27;aérodynamique pour restaurer et décupler la puissance d&#x27;aspiration; </li></ul><ul id="3c8ae47a-9a06-800c-8b00-cf2bb0027b60" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Garantir l&#x27;étanchéité globale du circuit d&#x27;air; </li></ul><ul id="3c8ae47a-9a06-8027-a5ea-f7c5900aad5d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Refondre la mobilité et le profil physique du robot; </li></ul><ul id="3c8ae47a-9a06-80c0-890b-e30aa1eacb67" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Fiabiliser le contrôle électronique et l&#x27;autonomie.</li></ul><h2 id="3c0ae47a-9a06-8009-98bb-faccf331f9c2" class="" dir="auto">🛠️ Détails de conception (Méca/Élec)</h2><h3 id="3cfae47a-9a06-8024-a079-d6f771286457" class="" dir="auto">1. Système d&#x27;aspiration &amp; flux d&#x27;air</h3><p id="3cfae47a-9a06-8004-96c5-d6de443675de" class="" dir="auto">Le montage parallèle divergent des ventilateurs a été abandonné au profit d&#x27;une configuration en série ou canalisée, l&#x27;objectif étant d&#x27;additionner les flux d&#x27;air sans créer de turbulences internes ni de chutes de pression. Le simple assemblage par vis entre le bloc de stockage des déchets et le bloc moteur a par ailleurs été remplacé par un système de fixation hermétique intégrant des joints d&#x27;étanchéité (plastique ou PLA imprimé), garantissant une meilleure conservation de la dépression au sein du circuit.</p><h3 id="3cfae47a-9a06-8055-99b1-cbb9e43c965f" class="" dir="auto">2. Mobilité, gabarit &amp; ergonomie</h3><p id="3cfae47a-9a06-8041-a782-c15d25c66b78" class="" dir="auto">Le châssis en PLA a été redimensionné et les composants internes réagencés afin d&#x27;obtenir un profil ultra-bas, permettant au robot d&#x27;accéder sous les meubles et les canapés. Les pièces imprimées en 3D ont par ailleurs fait l&#x27;objet d&#x27;un évidement stratégique (taux de remplissage/infill de 20 %), réduisant la masse globale de la structure sans sacrifier sa rigidité.</p><h3 id="3cfae47a-9a06-8099-9009-c1f317440aaa" class="" dir="auto">3. Électronique, code &amp; gestion énergétique</h3><p id="3cfae47a-9a06-8049-b77b-fb31c2a1b19d" class="" dir="auto"> La consommation électrique de la batterie LiPo 12V a également été optimisée, et des ouïes d&#x27;aération dédiées au refroidissement des moteurs ont été ajoutées pour améliorer la gestion thermique du système</p><hr id="3cfae47a-9a06-8011-9754-f731acae17e7" dir="auto"/><h3 id="3c5ae47a-9a06-8058-9ef1-e16287060a8d" class="" dir="auto">Quelques modélisations constituants le prototype </h3><ul id="3c8ae47a-9a06-8072-aaa5-c132dd13fd98" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Compartiment 1:</strong></li></ul><p id="3c8ae47a-9a06-802f-99d7-f8afaea4605c" class="" dir="auto">Composée essentiellement de 3 types d’ouvertures, cette pièce représente la partie avant de l’<strong>aspirateur</strong>. <strong>À</strong> cet effet, elle dispose d’une ouverture à l&#x27;avant servant de porte d’entrée pour les déchets. Ensuite, on a une autre ouverture au centre qui permettra de loger le moteur (CPU) d&#x27;aspiration des déchets. Enfin, on a des espaces <strong>alloués</strong> aux encoches (03) qui <strong>permettront</strong> de connecter cette pièce aux autres pièces du mécanisme.<br/><br/></p><div id="3c7ae47a-9a06-803f-9172-dad27724aeb3" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-80d3-84b4-df3dd3df6032" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-8070-9d87-e052a555ab3c" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054431.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054431.png"><img style="width:488.9875183105469px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054431.png"/></a></figure><p id="3c8ae47a-9a06-80c7-b78e-e7d08ae0d50f" class="" dir="auto"> </p></div><div id="3c7ae47a-9a06-80b9-8abe-cb6cbb36824e" style="width:49.99999999999999%" class="column" data-notion-column-ratio="0.49999999999999994" dir="auto"><figure id="3c7ae47a-9a06-80f9-9d0f-ff955dba4b21" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054417.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054417.png"><img style="width:703.9874877929688px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054417.png"/></a></figure></div></div><ul id="3cfae47a-9a06-8096-b09b-f75016201bb2" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Porteur ( support - cam et antenne )</strong></li></ul><p id="3cfae47a-9a06-8083-8e5d-cf1e2c41271d" class="" dir="auto">Cette <strong>pièce</strong> quant <strong>à</strong> elle servira de support entre le premier compartiment et l’ESP32 CAM. À cet effet, cette dernière dispose d’une ouverture pour loger la <strong>caméra</strong> ainsi que son antenne, <strong>et</strong> d’un conduit pour les câbles de <strong>connexion</strong>. Le tout <strong>a</strong> été <strong>désigné</strong> pour que le porteur puisse se loger dans le « compartiment 1 »<br/></p><div id="3c7ae47a-9a06-80b0-a4df-ec1d17a7e445" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-80bc-842e-c48420309161" style="width:43.75%" class="column" data-notion-column-ratio="0.4375" dir="auto"><figure id="3c7ae47a-9a06-803f-9775-f12cb6757c97" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032655.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032655.png"><img style="width:614px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032655.png"/></a></figure><p id="3c8ae47a-9a06-80f3-92f0-ca0dea7c03a4" class="" dir="auto">
+</p></div><div id="3c7ae47a-9a06-8096-9a72-d644cca8c63b" style="width:56.25%" class="column" data-notion-column-ratio="0.5625" dir="auto"><figure id="3c7ae47a-9a06-8002-b787-c39db31270c8" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032647.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032647.png"><img style="width:508px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032647.png"/></a></figure></div></div><figure id="3c7ae47a-9a06-8042-aca8-eea11a88a940" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052704.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052704.png"><img style="width:387px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052704.png"/></a></figure><p id="3cfae47a-9a06-8091-ad24-f08cd324aab0" class="" dir="auto">
+</p><ul id="3c8ae47a-9a06-8055-bfd6-f3da77e20417" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Support - Cam :</strong> </li></ul><p id="3c8ae47a-9a06-8038-8eef-ea895c097681" class="" dir="auto"><strong>Designée</strong> en deux parties, cette boîte sert de coffre pour l’ESP32 CAM.<br/></p><div id="3c7ae47a-9a06-80ff-98f1-e46578bf8af5" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-80f5-a37c-c6963534e76e" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-807d-ac73-fd4251ef8104" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031724.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031724.png"><img style="width:577px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031724.png"/></a></figure><p id="3c8ae47a-9a06-80c9-bb0a-f519fe8981c6" class="" dir="auto">
+</p></div><div id="3c7ae47a-9a06-807a-8fa3-cd15cfee95e2" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-80de-809b-e8e1b5eab69c" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031700.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031700.png"><img style="width:651px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031700.png"/></a></figure><p id="3c7ae47a-9a06-80ae-a84c-d28b0f3b0f1c" class="" dir="auto"> </p><p id="3cfae47a-9a06-805d-90a2-febe6040b5ba" class="" dir="auto">
+</p></div></div><div id="3c7ae47a-9a06-801b-beb8-da6f108e88f2" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-804b-bd91-e09531677647" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="3c8ae47a-9a06-80b0-99ed-e454612f1e46" class="" dir="auto">La première partie de ce boîtier : le couvercle, comporte <strong>3</strong> orifices respectivement pour la caméra, la torche et enfin le dissipateur thermique.<br/></p><figure id="3c7ae47a-9a06-8088-92f7-f3696ebb799e" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031748.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031748.png"><img style="width:704px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031748.png"/></a></figure><p id="3cbae47a-9a06-8054-a246-eec10d58fe5d" class="" dir="auto">
+</p></div><div id="3c7ae47a-9a06-80ee-9fec-e48d1ed51dd5" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="3cbae47a-9a06-8073-bc8b-ca1e5439f211" class="" dir="auto">
+</p><p id="3cfae47a-9a06-8079-bf2e-e87b348eac59" class="" dir="auto">En ce qui concerne la deuxième partie du boîtier : le <strong>corps</strong>, il comporte des ouvertures pour les broches du capteur, un trou pour faire passer le câble de l&#x27;antenne et un autre trou pour le bout type C pour la connexion filaire avec l’<strong>ESP32 CAM.</strong></p><figure id="3c7ae47a-9a06-8001-bd4f-e24693cb9396" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052806.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052806.png"><img style="width:621px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052806.png"/></a></figure><p id="3cbae47a-9a06-800e-937c-c9cc91277742" class="" dir="auto">
+</p></div></div><ul id="3cbae47a-9a06-8046-b6ab-ed38d57fbf9a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Compartiment 2:</strong></li></ul><p id="3cfae47a-9a06-80b1-a82f-d83e3c3a4dee" class="" dir="auto">En tant que deuxième compartiment du mécanisme, ce bloc est conçu de manière à <strong>compléter</strong> le compartiment 1 en <strong>offrant</strong> un espace pour contenir le réservoir des déchets, ainsi que tout le kit électronique <strong>comportant</strong> le driver, les piles et les régulateurs. À l’arrière, un espace a été <strong>créé</strong> pour y loger un interrupteur.<br/></p><div id="3c7ae47a-9a06-80a5-a158-e31f5981fc87" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-80c6-86e7-cfbdd9d28851" style="width:43.75%" class="column" data-notion-column-ratio="0.4375" dir="auto"><figure id="3c7ae47a-9a06-8077-9b75-ca98f5670ecf" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031852.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031852.png"><img style="width:523px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031852.png"/></a></figure><p id="3cbae47a-9a06-80a5-b299-c8b8baf8dc6f" class="" dir="auto">
+</p></div><div id="3c7ae47a-9a06-8070-9e02-d60020878080" style="width:56.25%" class="column" data-notion-column-ratio="0.5625" dir="auto"><figure id="3c7ae47a-9a06-8020-9eb2-de0f9074801e" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031837.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031837.png"><img style="width:704px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_031837.png"/></a></figure></div></div><ul id="3c8ae47a-9a06-8073-8fbf-f28dd8e37016" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Support des piles</strong></li></ul><p id="3c8ae47a-9a06-8080-aa0b-d75744f1db05" class="" dir="auto">Il s’agit là d’un composant essentiel, responsable du maintien des piles pour l&#x27;alimentation <strong>complète</strong> du circuit. <strong>Il</strong> a été conçu pour loger en tout et pour <strong>tout</strong> 04 piles lithium-ion. Pour le design, nous avons pris le soin de renseigner les marques de fixation pour le montage en série des piles. De même, des conduits <strong>ont</strong> été introduits pour faire passer les câbles de connexion.<br/></p><div id="3c7ae47a-9a06-804d-ba4b-e773f6b7138c" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-8025-ab6d-fdeeab048efa" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-805e-9999-de4312ada263" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032120.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032120.png"><img style="width:536px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032120.png"/></a></figure></div><div id="3c7ae47a-9a06-80e2-a9b9-fb843f5d9c1a" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-80a3-a2d3-d3e6d1f4914b" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032133.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032133.png"><img style="width:494px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032133.png"/></a></figure></div></div><ul id="3c8ae47a-9a06-80a5-90d0-dd1937ded797" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Bout d&#x27;aspiration</strong></li></ul><p id="3cfae47a-9a06-80c3-b899-f4272c6352df" class="" dir="auto"> En tant que  pièce de conduit coudé à section rectangulaire, elle relie l&#x27;embouchure d&#x27;aspiration au reste du circuit interne de l&#x27;aspirateur. Sa forme angulaire  permet de rediriger le flux d&#x27;air aspiré depuis le sol vers le corps de l&#x27;appareil, tout en minimisant les pertes de charge grâce à une transition progressive entre les deux segments. La section creuse et rectangulaire assure le passage de l&#x27;air et des débris aspirés jusqu&#x27;au système de filtration/stockage.</p><p id="3c8ae47a-9a06-80a3-b5e1-d8dbc84c0152" class="" dir="auto">
+</p><div id="3c7ae47a-9a06-8064-8e91-ff71aa261d76" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-801f-b933-db05d57d5cb7" style="width:56.25%" class="column" data-notion-column-ratio="0.5625" dir="auto"><figure id="3c7ae47a-9a06-80ff-89c6-d2b1990a3a64" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032320.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032320.png"><img style="width:308px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032320.png"/></a></figure></div><div id="3c7ae47a-9a06-80b3-9e70-f22508f1b3d9" style="width:43.74999999999999%" class="column" data-notion-column-ratio="0.43749999999999994" dir="auto"><figure id="3c7ae47a-9a06-80b7-86a9-fcf32bad1c86" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032337.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032337.png"><img style="width:384px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032337.png"/></a></figure></div></div><p id="3cfae47a-9a06-800f-b2b3-ffaf53705228" class="" dir="auto">
+</p><ul id="3cfae47a-9a06-80ad-8b2a-e535f2326402" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Support - régulateur </strong></li></ul><p id="3cfae47a-9a06-807f-abdd-f1fdf7b672cd" class="" dir="auto">Il permet de viser solidement les régulateurs. </p><figure id="3c7ae47a-9a06-808a-8e87-fe097f200941" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032250.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032250.png"><img style="width:678px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_032250.png"/></a></figure><p id="3c7ae47a-9a06-8091-a4a8-f187bd14f438" class="" dir="auto">
+</p><ul id="3cfae47a-9a06-80bf-be0d-fc52c0a4cd01" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Grille d&#x27;évacuation arrière</strong></li></ul><p id="3cfae47a-9a06-8024-9b0d-c9140fc75b4a" class="" dir="auto">La grille d&#x27;évacuation est une plaque rectangulaire plate de 76mm × 151,8 mm, réalisée en PLA, destinée à être positionnée à l&#x27;arrière du mécanisme. Elle intègre trois fentes oblongues parallèles, traversant toute l&#x27;épaisseur de la plaque, dont les extrémités arrondies limitent les concentrations de contraintes et facilitent l&#x27;écoulement de l&#x27;air. Ces ouvertures permettent l&#x27;évacuation de l&#x27;air aspiré une fois celui-ci filtré, tout en assurant une certaine rigidité structurelle à la pièce grâce aux sections pleines conservées entre les fentes.</p><figure id="3c7ae47a-9a06-8015-ac4c-edc9493bf3dd" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_033234.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_033234.png"><img style="width:524px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_033234.png"/></a></figure><ul id="3cfae47a-9a06-8092-ac8f-cf0ca0177d9b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Couvercle du compartiment 2</strong></li></ul><p id="3cfae47a-9a06-802d-b1c5-f6d6ac6c43e0" class="" dir="auto">Le couvercle est une pièce plate composée de deux panneaux articulés autour d&#x27;une ligne de pliure centrale, formant un couvercle en deux volets. Il vient se refermer sur la partie supérieure du compartiment 2 (le bloc jaune), qu&#x27;il recouvre et protège. Un petit ergot/languette de fixation, replié perpendiculairement au niveau de la charnière, permet de le clipser ou de le verrouiller sur le compartiment lorsqu&#x27;il est fermé.</p><figure id="3c7ae47a-9a06-803e-b4c9-d0e4789a5836" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052911.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052911.png"><img style="width:488px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052911.png"/></a></figure><ul id="3cfae47a-9a06-8054-9983-ca4841ac739c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Pièce de jonction compartiment 1 / compartiment 2</strong></li></ul><p id="3cfae47a-9a06-8008-ba84-fb6c97ce3acc" class="" dir="auto">Cette pièce a une forme allongée en « os » (ou haltère), avec deux extrémités arrondies plus larges reliées par une section centrale rectiligne plus étroite. Elle sert de joint entre le compartiment 1 et le compartiment 2, chaque extrémité arrondie venant probablement s&#x27;insérer ou se fixer dans l&#x27;un des deux compartiments.</p><div id="3c7ae47a-9a06-801a-9c34-cb6dfcfd8820" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-8017-ae79-e69ecf327b98" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-8049-aa5d-f6687ba93194" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052846.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052846.png"><img style="width:486px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052846.png"/></a></figure><p id="3c7ae47a-9a06-803f-87e0-f3c600d144cb" class="" dir="auto">
+</p></div><div id="3c7ae47a-9a06-8074-9fe5-de321f2fc43e" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-80c6-b247-d4b6e1ba05c9" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052856.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052856.png"><img style="width:473px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_052856.png"/></a></figure></div></div><ul id="3cfae47a-9a06-8086-b43b-ec52a2319f86" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Équerre de liaison châssis / moteur</strong></li></ul><p id="3cfae47a-9a06-8009-a9c3-caeca774cab4" class="" dir="auto">Cette pièce est une équerre en L, réalisée à partir d&#x27;une plaque pliée à 90°, servant à fixer les moteurs (représentés en jaune) au châssis de l&#x27;aspirateur. Le côté horizontal, percé de deux trous, se fixe sur le châssis, tandis que le côté vertical, plus long et percé de deux trous supplémentaires, accueille le moteur. Cette configuration en équerre permet de maintenir le moteur en position perpendiculaire au plan du châssis tout en assurant une fixation rigide et stable.</p><figure id="3c7ae47a-9a06-8069-afd0-fd83c81cdcd6" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053159.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053159.png"><img style="width:372px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053159.png"/></a></figure><ul id="3cfae47a-9a06-801c-9f45-f58577466584" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Motoréducteur et roue (composants GrabCAD)</strong></li></ul><p id="3cfae47a-9a06-8004-a061-f3be25e7cdde" class="" dir="auto">Ces deux pièces, importées depuis GrabCAD, forment l&#x27;unité de propulsion du châssis : le motoréducteur génère le couple moteur, tandis que la roue, montée sur son arbre de sortie, le transforme en déplacement effectif. Elles correspondent aux éléments de mobilité issus du kit robotique ZYC0024, déjà utilisé sur les versions précédentes du projet.</p><div id="3c7ae47a-9a06-8095-869c-cc8c80a09b1f" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-80e4-8979-f20e22a5f923" style="width:50.000000000000014%" class="column" data-notion-column-ratio="0.5000000000000001" dir="auto"><figure id="3c7ae47a-9a06-8024-b560-fc4a2777292d" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053229.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053229.png"><img style="width:601px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053229.png"/></a></figure></div><div id="3c7ae47a-9a06-8019-b47f-e280cf731f9d" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-80b0-bed7-ce9d2cfebc67" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053304.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053304.png"><img style="width:704px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053304.png"/></a></figure></div></div><h3 id="3cfae47a-9a06-806d-a592-c3bc2703c052" class="" dir="auto">Assemblage final</h3><p id="3cfae47a-9a06-8021-9e35-ce891f2dd4a0" class="" dir="auto">Cette vue représente l&#x27;assemblage complet de l&#x27;aspirateur sous SolidWorks, où l&#x27;ensemble des pièces précédemment décrites — châssis, compartiments, roues, motoréducteurs et éléments de liaison — a été positionné et contraint via des relations d&#x27;assemblage (concentricité, coïncidence, etc.) pour former le rendu final du prototype.</p><div id="3c7ae47a-9a06-80a4-9cbc-f41a2c6b6fe5" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-8059-867d-cddde6b8adf1" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-80a5-ac9c-e6aa8e0fd752" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053534.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053534.png"><img style="width:704px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053534.png"/></a></figure><p id="3c7ae47a-9a06-8082-b873-d7a47cf20012" class="" dir="auto">
+</p></div><div id="3c7ae47a-9a06-8038-a188-f46b04cf1925" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-8070-8d04-ed7552d27811" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053548.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053548.png"><img style="width:704px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053548.png"/></a></figure></div></div><p id="3c7ae47a-9a06-80fc-bc14-d400652675d0" class="" dir="auto">
+</p><figure id="3c7ae47a-9a06-80de-84bd-eee41d72f60d" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053906.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053906.png"><img style="width:443.9875183105469px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_053906.png"/></a></figure><p id="3c7ae47a-9a06-803f-b8d4-fcf4288270ea" class="" dir="auto"><strong>Régulateur 12V : </strong></p><p id="3cfae47a-9a06-8071-a71a-fc69ae783da1" class="" dir="auto">Il permet de réguler selon l&#x27;usage de l’aspirateur la tension délivrée par les piles </p><div id="3c7ae47a-9a06-8012-8571-e4845d8f58a2" class="column-list" data-notion-column-list="" dir="auto"><div id="3c7ae47a-9a06-801b-96c4-d8dacd739371" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-8013-88a1-f3499f24dbad" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054046.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054046.png"><img style="width:624.9874877929688px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054046.png"/></a></figure><p id="3c7ae47a-9a06-8094-a8f6-e1cfdbe664b1" class="" dir="auto"><strong>Caméra ESP32 : </strong></p><p id="3cfae47a-9a06-80f1-b397-c108dbd79866" class="" dir="auto">Elle donne une visibilité à l’aspirateur sur l’endroit à aspirer .</p><p id="3cfae47a-9a06-804d-8e6f-e81e7ed816b4" class="" dir="auto">
+</p></div><div id="3c7ae47a-9a06-80be-8242-ce4f37f5786c" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3c7ae47a-9a06-8045-9346-fee5ea2bd717" class="image" data-notion-image="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054152.png" dir="ltr"><a href="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054152.png"><img style="width:384px" src="Prototype%20V3%20(In%20process%E2%80%A6)/Screenshot_2026-08-25_054152.png"/></a></figure><p id="3c7ae47a-9a06-808f-9e83-c6d2006361b2" class="" dir="auto"><strong>Driver : </strong></p><p id="3cfae47a-9a06-804a-8198-c328323ee841" class="" dir="auto">Il commande les moteurs des roues .</p></div></div><h3 id="3cfae47a-9a06-801f-8ab1-cd322ead2012" class="" dir="auto">Électronique — Alimentation et câblage</h3><p id="3cfae47a-9a06-802a-815f-c048cbdd6cab" class="" dir="auto">Contrairement au prototype précédent qui reposait sur deux alimentations distinctes pour le moteur d&#x27;aspiration et le système de déplacement, ce prototype intègre une alimentation unique, conçue par l&#x27;équipe à partir de 4 piles lithium-ion, gérant l&#x27;ensemble du système. Par ailleurs, les câbles jumpers ont été remplacés par des câbles soudés directement par l&#x27;équipe, offrant des connexions plus fiables et plus stables.</p><h2 id="3c0ae47a-9a06-8090-81e9-e6afefa41ce3" class="" dir="auto">📊 Résultats des tests</h2><p id="3cfae47a-9a06-80fa-a745-f09a7aa56de5" class="" dir="auto">La puissance et le débit d&#x27;air se sont révélés en nette amélioration par rapport au prototype précédent, sans toutefois atteindre le niveau escompté : le système reste capable d&#x27;aspirer de petits débris, mais peine encore face à des déchets plus massifs, comme les protections en tissu blanc que l&#x27;on retrouve dans les appareils neufs.</p><p id="3cfae47a-9a06-80f7-a21b-e692dbe58d23" class="" dir="auto">L&#x27;autonomie mesurée avoisine les 30 minutes, avec un système d&#x27;alimentation désormais plus facilement modulable. Sur le plan mécanique, la structure s&#x27;est montrée très résistante, confirmant la solidité du châssis et des pièces assemblées.</p><p id="3cfae47a-9a06-8042-9f7f-ea4f550326c2" class="" dir="auto">Concernant l&#x27;étanchéité, le circuit d&#x27;air se comporte globalement bien, avec une navigation stable sur l&#x27;ensemble des types de sols testés ; quelques fuites d&#x27;air subsistent au niveau des jonctions, mais restent minimes.</p><p id="3cfae47a-9a06-8068-a7b9-dbf5dcea8af5" class="" dir="auto">Du côté du contrôle électronique, le code de navigation présente encore des défaillances sur lesquelles l&#x27;équipe continue de travailler : les commandes de direction envoyées depuis l&#x27;application mobile ne répondent pas systématiquement, certaines directions restant pour l&#x27;instant non fonctionnelles.</p><p id="3cfae47a-9a06-8034-8937-edf15cdae4f7" class="" dir="auto">
+</p><h2 id="3cfae47a-9a06-8055-b74e-eb06e30ed45f" class="" dir="auto">💡 Améliorations pour la version suivante.</h2><p id="3cfae47a-9a06-805b-84ce-de734265242d" class="" dir="auto">Sur la base des résultats obtenus, l&#x27;équipe entend engager les corrections suivantes pour la prochaine itération :</p><ul id="3cfae47a-9a06-8062-95af-de4845313fc5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Revoir l&#x27;embouchure d&#x27;aspiration et le diamètre du conduit, et envisager une puissance moteur supplémentaire ou une meilleure gestion de la dépression, afin d&#x27;élargir la capacité d&#x27;aspiration au-delà des petits débris ;</li></ul><ul id="3cfae47a-9a06-80f8-b3b6-ec6cb5ed1ac4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Renforcer les joints aux points de jonction entre les blocs (notamment entre le bloc de stockage et le bloc moteur), afin de réduire davantage les fuites d&#x27;air constatées et de préserver au mieux la dépression du circuit ;</li></ul><ul id="3cfae47a-9a06-80e8-9597-f6f5cc5750cc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Fiabiliser le code de navigation par un débogage approfondi de la gestion des commandes de direction, afin de garantir une réponse systématique de l&#x27;application mobile à chaque instruction envoyée, en particulier sur les directions actuellement défaillantes.</li></ul><h2 id="3c7ae47a-9a06-80af-9850-f649f740ed4b" class="" dir="auto">Annexes </h2><h4 id="3cfae47a-9a06-80d8-aaf0-ff8ba3517ab1" class="" dir="auto"> Fichiers CAO</h4><p id="3cfae47a-9a06-805b-a22e-c6b58ffe613e" class="" dir="auto">L&#x27;ensemble des pièces modélisées dans le cadre de ce projet est disponible sur le Drive suivant :</p><figure id="3c7ae47a-9a06-800b-853a-d0981d9d79d7" dir="ltr"><a href="https://drive.google.com/drive/folders/1-vHpUSCrvxs6SL9zksyHLbdsC1fU7P0H?usp=sharing" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">IMSP-Aspirateur-V3 - Google Drive</div></div><div class="bookmark-href"><img src="https://ssl.gstatic.com/docs/doclist/images/drive_favicon_2026_32dp.png" class="icon bookmark-icon"/>https://drive.google.com/drive/folders/1-vHpUSCrvxs6SL9zksyHLbdsC1fU7P0H?usp=sharing</div></div></a></figure><p id="3cfae47a-9a06-8007-9908-ef65d1222592" class="" dir="auto">Les fichiers sont fournis au format SolidWorks (.SLDPRT) et doivent être exporté en STL pour impression 3D.</p><h4 id="3c7ae47a-9a06-8046-8777-f3ece5aa249b" class="" dir="auto">Vidéo récapitulative</h4><figure id="3cfae47a-9a06-80e1-9a57-ed8bde141bd9" dir="ltr"><div class="source">https://drive.google.com/file/d/1TWKlcn0WtR0H-IXEdxd0yOlNYWc2HX2j/view?usp=drive_link</div></figure><h4 id="3cfae47a-9a06-80fa-8624-fb4800d5975d" class="" dir="auto">Ouverture vers le prototype suivant</h4><p id="3cfae47a-9a06-80a9-8057-f321c1a172b9" class="" dir="auto">Au-delà de ces corrections, le prochain prototype visera à franchir une nouvelle étape avec l&#x27;intégration de la navigation autonome, à travers l&#x27;ajout de capteurs dédiés permettant à l&#x27;aspirateur de percevoir son environnement et de s&#x27;y déplacer sans intervention manuelle constante.</p><p id="3cfae47a-9a06-801f-8987-c9f184632ec6" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
