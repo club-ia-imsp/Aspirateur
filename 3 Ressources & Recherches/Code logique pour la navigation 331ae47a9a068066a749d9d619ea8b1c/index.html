@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Code logique pour la navigation - Aspirateur IMSP Cleanbot</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Aspirateur IMSP Cleanbot</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../1%20Vision-Objectifs" class="nav-link">1. Vision & Objectifs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../2%20Journal-Prototypes" class="nav-link">2. Journal des Prototypes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../3%20Ressources-Recherches" class="nav-link">3. Ressources & Recherches</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#code-logique-pour-la-navigation" class="nav-link">Code logique pour la navigation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="code-logique-pour-la-navigation">Code logique pour la navigation</h1>
+<p><strong>DISPOSITION DES CAPTEURS</strong></p>
+<p>Capteur1: (Front) Disposé en avant sur un cerveau moteur et effectuant en continu une rotation de 180° de gauche à la droite </p>
+<p>Capteur2: (Front down) En avant sous le châssis et tourné vers le sol (Front down)</p>
+<p>Capteur3: (Left) Au milieu du coté gauche et orthogonal au plan du châssis</p>
+<p>Capteur4:(Right)  Au milieu du coté droit et orthogonal au plan du châssis</p>
+<p>Capteur5: (Back) En arrière  </p>
+<p>Capteur6: (Back down) Derrière sous le châssis face au sol </p>
+<p>Donc 06 capteurs au total</p>
+<p>🧠 🔵 <strong>LOGIQUE DE NAVIGATION (PSEUDO-LIGNE INTELLIGENTE)</strong></p>
+<p>Le robot adopte une stratégie de balayage progressif de la pièce, inspirée du zigzag, mais adaptée à l’absence de capteurs de position précis. Il avance globalement en ligne droite tout en corrigeant sa trajectoire en temps réel grâce aux capteurs latéraux. Lorsqu’un mur ou un obstacle est détecté à gauche ou à droite, il ajuste légèrement la vitesse de ses roues pour rester à distance constante, ce qui permet de maintenir une trajectoire quasi rectiligne (pseudo-ligne).
+En parallèle, le capteur ultrason monté sur servo effectue un balayage continu (radar) pour anticiper les obstacles frontaux. Lorsqu’un obstacle est détecté devant, le robot s’arrête, analyse rapidement l’espace à gauche et à droite à l’aide du servo, puis effectue un demi-tour ou un changement de direction en se décalant latéralement avant de repartir dans le sens opposé. Ce décalage progressif permet de reproduire un comportement de type zigzag, assurant ainsi une couverture de surface efficace.
+Les capteurs orientés vers le sol (avant et arrière) assurent une sécurité permanente : si un vide est détecté (escalier), le robot interrompt immédiatement son mouvement et effectue une manœuvre d’évitement adaptée (recul ou avance + rotation). Le capteur arrière empêche également toute collision lors des phases de recul.
+Ainsi, le robot combine :
+une progression en pseudo-ligne stabilisée par correction latérale,
+un changement de bande automatique lors des obstacles,
+un balayage radar pour anticiper,
+et une gestion prioritaire de la sécurité,
+ce qui permet d’obtenir une couverture progressive, robuste et adaptée à un environnement réel sans nécessiter de capteurs avancés de position.</p>
+<p><em>Ilustration</em></p>
+<p><img alt="WhatsApp Image 2026-03-28 at 17.38.38.jpeg" src="../Code%20logique%20pour%20la%20navigation/WhatsApp_Image_2026-03-28_at_17.38.38.jpeg" /></p>
+<p>🔵CODE LOGIQUE</p>
+<pre><code class="language-arduino">#include &lt;Arduino.h&gt;
+#include &lt;ESP32Servo.h&gt;
+
+// ----------------------
+// CAPTEURS
+// ----------------------
+#define TRIG_FRONT 5
+#define ECHO_FRONT 18
+
+#define TRIG_DOWN_FRONT 19
+#define ECHO_DOWN_FRONT 21
+
+#define TRIG_DOWN_BACK 22
+#define ECHO_DOWN_BACK 23
+
+#define TRIG_BACK 25
+#define ECHO_BACK 26
+
+#define TRIG_LEFT 27
+#define ECHO_LEFT 14
+
+#define TRIG_RIGHT 32
+#define ECHO_RIGHT 33
+
+// ----------------------
+// MOTEURS L298N
+// ----------------------
+#define ENA 12
+#define ENB 13
+#define IN1 16
+#define IN2 4
+#define IN3 2
+#define IN4 17
+
+// ----------------------
+#define SERVO_PIN 15
+Servo radar;
+
+// ----------------------
+// VARIABLES TEMPS
+unsigned long tServo = 0;
+unsigned long tSensor = 0;
+unsigned long tDecision = 0;
+unsigned long tShift = 0;
+
+// ----------------------
+int angle = 0;
+int dir = 1;
+
+// distances
+float front, downF, downB, back, leftD, rightD;
+
+// mode zigzag
+bool changementLigne = false;
+
+// ----------------------
+// DISTANCE
+float lireDist(int trig, int echo) {
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+
+  long d = pulseIn(echo, HIGH, 30000);
+  if (d == 0) return 999;
+
+  return d * 0.034 / 2;
+}
+
+// ----------------------
+// MOTEUR PWM
+void moteur(int g, int d) {
+
+  ledcWrite(0, abs(g));
+  ledcWrite(1, abs(d));
+
+  digitalWrite(IN1, g &gt; 0);
+  digitalWrite(IN2, g &lt;= 0);
+
+  digitalWrite(IN3, d &gt; 0);
+  digitalWrite(IN4, d &lt;= 0);
+}
+
+// ----------------------
+void setup() {
+  Serial.begin(115200);
+
+  // capteurs
+  pinMode(TRIG_FRONT, OUTPUT); pinMode(ECHO_FRONT, INPUT);
+  pinMode(TRIG_DOWN_FRONT, OUTPUT); pinMode(ECHO_DOWN_FRONT, INPUT);
+  pinMode(TRIG_DOWN_BACK, OUTPUT); pinMode(ECHO_DOWN_BACK, INPUT);
+  pinMode(TRIG_BACK, OUTPUT); pinMode(ECHO_BACK, INPUT);
+  pinMode(TRIG_LEFT, OUTPUT); pinMode(ECHO_LEFT, INPUT);
+  pinMode(TRIG_RIGHT, OUTPUT); pinMode(ECHO_RIGHT, INPUT);
+
+  // moteurs
+  pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
+
+  ledcAttach(ENA,1000,8);
+  ledcAttach(ENB,1000,8);
+
+  radar.attach(SERVO_PIN);
+}
+
+// ----------------------
+void loop() {
+
+  unsigned long now = millis();
+
+  // 🔄 RADAR CONTINU
+  if (now - tServo &gt; 40) {
+    tServo = now;
+
+    radar.write(angle);
+    angle += dir * 5;
+
+    if (angle &gt;= 180 || angle &lt;= 0)
+      dir *= -1;
+  }
+
+  // 📡 LECTURE CAPTEURS
+  if (now - tSensor &gt; 80) {
+    tSensor = now;
+
+    front = lireDist(TRIG_FRONT, ECHO_FRONT);
+    downF = lireDist(TRIG_DOWN_FRONT, ECHO_DOWN_FRONT);
+    downB = lireDist(TRIG_DOWN_BACK, ECHO_DOWN_BACK);
+    back  = lireDist(TRIG_BACK, ECHO_BACK);
+    leftD = lireDist(TRIG_LEFT, ECHO_LEFT);
+    rightD= lireDist(TRIG_RIGHT, ECHO_RIGHT);
+  }
+
+  // 🧠 DÉCISION
+  if (now - tDecision &gt; 100) {
+    tDecision = now;
+
+    // 🔴 SÉCURITÉ VIDE AVANT
+    if (downF &gt; 50) {
+      moteur(-150, -150);
+      return;
+    }
+
+    // 🔴 SÉCURITÉ VIDE ARRIÈRE
+    if (downB &gt; 50) {
+      moteur(150, 150);
+      return;
+    }
+
+    // 🔴 OBSTACLE DEVANT
+    if (front &lt; 25) {
+      changementLigne = true;
+      tShift = now;
+    }
+
+    // 🟣 CHANGEMENT DE &quot;LIGNE&quot; (zigzag)
+    if (changementLigne) {
+
+      // petit recul si possible
+      if (back &gt; 20 &amp;&amp; now - tShift &lt; 300) {
+        moteur(-150, -150);
+        return;
+      }
+
+      // décalage latéral
+      if (now - tShift &lt; 800) {
+        moteur(150, -150); // rotation
+        return;
+      }
+
+      changementLigne = false;
+    }
+
+    // 🟢 PSEUDO-LIGNE (correction latérale)
+    int base = 170;
+
+    if (leftD &lt; 15) {
+      moteur(base + 30, base - 40); // corrige droite
+    }
+    else if (rightD &lt; 15) {
+      moteur(base - 40, base + 30); // corrige gauche
+    }
+    else {
+      moteur(base, base); // ligne droite
+    }
+
+    // 🔵 EXPLORATION (zone ouverte)
+    if (leftD &gt; 50 &amp;&amp; rightD &gt; 50) {
+      moteur(base, base - 20); // légère courbe
+    }
+  }
+}
+</code></pre>
+<p><strong>🚀 CE QUE NOTRE ROBOT FAIT MAINTENANT</strong>
+🔥 Comportement très avancé :
+✅ Avance en pseudo-ligne (quasi zigzag)
+✅ Corrige automatiquement sa trajectoire
+✅ Change de “ligne” quand obstacle
+✅ Évite les escaliers AVANT et ARRIÈRE
+✅ Radar actif en permanence
+✅ Mouvement fluide (millis)
+✅ Bonne couverture de surface</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

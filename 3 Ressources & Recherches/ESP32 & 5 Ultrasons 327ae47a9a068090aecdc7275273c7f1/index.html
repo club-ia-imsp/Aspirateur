@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>ESP32 &amp; 5 Ultrasons - Aspirateur IMSP Cleanbot</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Aspirateur IMSP Cleanbot</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../1%20Vision-Objectifs" class="nav-link">1. Vision & Objectifs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../2%20Journal-Prototypes" class="nav-link">2. Journal des Prototypes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../3%20Ressources-Recherches" class="nav-link">3. Ressources & Recherches</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#esp32-5-ultrasons" class="nav-link">ESP32 &amp; 5 Ultrasons</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="esp32-5-ultrasons">ESP32 &amp; 5 Ultrasons</h1>
+<p><strong>DISPOSITION</strong></p>
+<p>Capteur1: Disposé en avant sur un cerveau moteur et pouvant donc périodiquement effectuée une demi rotation jouant un peu le rôle de Radar</p>
+<p>Capteur2: En avant sous le châssis et tourné vers le sol</p>
+<p>Capteur3: Au milieu du coté gauche et orthogonal au plan du châssis</p>
+<p>Capteur4: Au milieu du coté droit et orthogonal au plan du châssis</p>
+<p>Capteur5: En arrière  </p>
+<p><strong>BRANCHEMENT</strong></p>
+<p>Capteur 1: TRIG → GPIO 15
+                   ECHO → GPIO 2</p>
+<p>Capteur 2:  TRIG → GPIO 4
+                     ECHO → GPIO 16</p>
+<p>Capteur 3:  TRIG → GPIO 17
+                      ECHO → GPIO 5</p>
+<p>Capteur 4 : TRIG → GPIO 19
+                     ECHO → GPIO 18</p>
+<p>Capteur 5:  TRIG → GPIO 21
+                      ECHO → GPIO 34</p>
+<pre><code>                  VCC→5 V
+
+                  GND→GND
+</code></pre>
+<p><strong>CODE POUR LIRE LES 5 CAPTEURS</strong> </p>
+<pre><code class="language-arduino">
+// ---------------------------
+// Définition des broches TRIG
+// ---------------------------
+#define TRIG1 15   // Broche TRIG du capteur 1
+#define TRIG2 4   // Broche TRIG du capteur 2
+#define TRIG3 17    // Broche TRIG du capteur 3
+#define TRIG4 19   // Broche TRIG du capteur 4
+#define TRIG5 21  // Broche TRIG du capteur 5
+
+// ---------------------------
+// Définition des broches ECHO
+// ---------------------------
+
+#define ECHO1 2   // Broche ECHO du capteur 1
+#define ECHO2 16   // Broche ECHO du capteur 2
+#define ECHO3 5    // Broche ECHO du capteur 3
+#define ECHO4 18   // Broche ECHO du capteur 4
+#define ECHO5 34   // Broche ECHO du capteur 5
+
+// --------------------------------------------------
+// Fonction qui mesure la distance avec un capteur
+// --------------------------------------------------
+
+long lireDistance(int trigPin, int echoPin)
+{
+
+digitalWrite(trigPin, LOW);      // Met la broche TRIG à 0
+delayMicroseconds(2);            // Petite pause pour stabiliser le capteur
+
+digitalWrite(trigPin, HIGH);     // Envoie une impulsion ultrason
+delayMicroseconds(10);           // Durée de l'impulsion (10 µs)
+digitalWrite(trigPin, LOW);      // Arrêt de l'impulsion
+
+long duree = pulseIn(echoPin, HIGH);   // Mesure le temps du signal reçu
+long distance = duree * 0.034 / 2;     // Conversion du temps en distance (cm)
+
+return distance;                 // Renvoie la distance mesurée
+}
+
+// ---------------------------
+// Configuration initiale
+// ---------------------------
+
+void setup()
+{
+
+Serial.begin(115200); // Démarre la communication série avec le PC
+
+// Configuration des broches TRIG en sortie
+
+pinMode(TRIG1, OUTPUT); // TRIG1 est une sortie
+pinMode(TRIG2, OUTPUT); // TRIG2 est une sortie
+pinMode(TRIG3, OUTPUT); // TRIG3 est une sortie
+pinMode(TRIG4, OUTPUT); // TRIG4 est une sortie
+pinMode(TRIG5, OUTPUT); // TRIG5 est une sortie
+
+// Configuration des broches ECHO en entrée
+
+pinMode(ECHO1, INPUT);  // ECHO1 est une entrée
+pinMode(ECHO2, INPUT);  // ECHO2 est une entrée
+pinMode(ECHO3, INPUT);  // ECHO3 est une entrée
+pinMode(ECHO4, INPUT);  // ECHO4 est une entrée
+pinMode(ECHO5, INPUT);  // ECHO5 est une entrée
+
+
+}
+
+
+
+// ---------------------------
+// Programme principal
+// ---------------------------
+
+
+
+void loop()
+{
+
+
+
+long d1 = lireDistance(TRIG1, ECHO1); // Mesure la distance du capteur 1
+delay(60);                            // Pause pour éviter interférences
+
+
+
+long d2 = lireDistance(TRIG2, ECHO2); // Mesure la distance du capteur 2
+delay(60);                            // Pause entre capteurs
+
+
+
+long d3 = lireDistance(TRIG3, ECHO3); // Mesure la distance du capteur 3
+delay(60);
+
+
+
+long d4 = lireDistance(TRIG4, ECHO4); // Mesure la distance du capteur 4
+delay(60);
+
+
+
+long d5 = lireDistance(TRIG5, ECHO5); // Mesure la distance du capteur 5
+delay(60);
+
+
+
+// Affichage des distances dans le moniteur série
+
+
+
+Serial.print(&quot;Capteur 1 : &quot;);
+Serial.print(d1);
+Serial.println(&quot; cm&quot;);
+
+
+
+
+Serial.print(&quot;Capteur 2 : &quot;);
+Serial.print(d2);
+Serial.println(&quot; cm&quot;);
+
+
+Serial.print(&quot;Capteur 3 : &quot;);
+Serial.print(d3);
+Serial.println(&quot; cm&quot;);
+
+
+Serial.print(&quot;Capteur 4 : &quot;);
+Serial.print(d4);
+Serial.println(&quot; cm&quot;);
+
+
+Serial.print(&quot;Capteur 5 : &quot;);
+Serial.print(d5);
+Serial.println(&quot; cm&quot;);
+
+
+Serial.println(&quot;---------------------------&quot;);
+
+
+
+delay(500); // Attente avant la prochaine lecture
+}
+
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

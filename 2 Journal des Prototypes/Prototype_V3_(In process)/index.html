@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Prototype V3 (In process…) - Aspirateur IMSP Cleanbot</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Aspirateur IMSP Cleanbot</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../1%20Vision-Objectifs" class="nav-link">1. Vision & Objectifs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../2%20Journal-Prototypes" class="nav-link">2. Journal des Prototypes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../3%20Ressources-Recherches" class="nav-link">3. Ressources & Recherches</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#prototype-v3-in-process" class="nav-link">Prototype V3 (In process…)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objectifs-de-cette-version" class="nav-link">🎯 Objectifs de cette version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#details-de-conception-mecaelec" class="nav-link">🛠️ Détails de conception (Méca/Élec)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#resultats-des-tests" class="nav-link">📊 Résultats des tests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ameliorations-pour-la-version-suivante" class="nav-link">💡 Améliorations pour la version suivante.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#annexes" class="nav-link">Annexes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="prototype-v3-in-process">Prototype V3 (In process…)</h1>
+<p>Created: August 18, 2026 7:04 AM
+Status: In progress</p>
+<h2 id="objectifs-de-cette-version">🎯 Objectifs de cette version</h2>
+<p>Le prototype V3 vise à corriger les faiblesses techniques identifiées sur les prototypes précédents afin d’obtenir une solution d'aspiration réellement efficace, compacte et fiable.</p>
+<p>Les priorités s'articulent autour de quatre axes majeurs : </p>
+<ul>
+<li>Optimiser l'aérodynamique pour restaurer et décupler la puissance d'aspiration;</li>
+<li>Garantir l'étanchéité globale du circuit d'air;</li>
+<li>Refondre la mobilité et le profil physique du robot;</li>
+<li>Fiabiliser le contrôle électronique et l'autonomie.</li>
+</ul>
+<h2 id="details-de-conception-mecaelec">🛠️ Détails de conception (Méca/Élec)</h2>
+<h3 id="1-systeme-daspiration-flux-dair">1. Système d'aspiration &amp; flux d'air</h3>
+<p>Le montage parallèle divergent des ventilateurs a été abandonné au profit d'une configuration en série ou canalisée, l'objectif étant d'additionner les flux d'air sans créer de turbulences internes ni de chutes de pression. Le simple assemblage par vis entre le bloc de stockage des déchets et le bloc moteur a par ailleurs été remplacé par un système de fixation hermétique intégrant des joints d'étanchéité (plastique ou PLA imprimé), garantissant une meilleure conservation de la dépression au sein du circuit.</p>
+<h3 id="2-mobilite-gabarit-ergonomie">2. Mobilité, gabarit &amp; ergonomie</h3>
+<p>Le châssis en PLA a été redimensionné et les composants internes réagencés afin d'obtenir un profil ultra-bas, permettant au robot d'accéder sous les meubles et les canapés. Les pièces imprimées en 3D ont par ailleurs fait l'objet d'un évidement stratégique (taux de remplissage/infill de 20 %), réduisant la masse globale de la structure sans sacrifier sa rigidité.</p>
+<h3 id="3-electronique-code-gestion-energetique">3. Électronique, code &amp; gestion énergétique</h3>
+<p>La consommation électrique de la batterie LiPo 12V a également été optimisée, et des ouïes d'aération dédiées au refroidissement des moteurs ont été ajoutées pour améliorer la gestion thermique du système</p>
+<hr />
+<h3 id="quelques-modelisations-constituants-le-prototype">Quelques modélisations constituants le prototype</h3>
+<ul>
+<li><strong>Compartiment 1:</strong></li>
+</ul>
+<p>Composée essentiellement de 3 types d’ouvertures, cette pièce représente la partie avant de l’<strong>aspirateur</strong>. <strong>À</strong> cet effet, elle dispose d’une ouverture à l'avant servant de porte d’entrée pour les déchets. Ensuite, on a une autre ouverture au centre qui permettra de loger le moteur (CPU) d'aspiration des déchets. Enfin, on a des espaces <strong>alloués</strong> aux encoches (03) qui <strong>permettront</strong> de connecter cette pièce aux autres pièces du mécanisme.</p>
+<p><img alt="Screenshot 2026-08-25 054431.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_054431.png" /></p>
+<p><img alt="Screenshot 2026-08-25 054417.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_054417.png" /></p>
+<ul>
+<li><strong>Porteur ( support - cam et antenne )</strong></li>
+</ul>
+<p>Cette <strong>pièce</strong> quant <strong>à</strong> elle servira de support entre le premier compartiment et l’ESP32 CAM. À cet effet, cette dernière dispose d’une ouverture pour loger la <strong>caméra</strong> ainsi que son antenne, <strong>et</strong> d’un conduit pour les câbles de <strong>connexion</strong>. Le tout <strong>a</strong> été <strong>désigné</strong> pour que le porteur puisse se loger dans le « compartiment 1 »</p>
+<p><img alt="Screenshot 2026-08-25 032655.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_032655.png" /></p>
+<p><img alt="Screenshot 2026-08-25 032647.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_032647.png" /></p>
+<p><img alt="Screenshot 2026-08-25 052704.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_052704.png" /></p>
+<ul>
+<li><strong>Support - Cam :</strong></li>
+</ul>
+<p><strong>Designée</strong> en deux parties, cette boîte sert de coffre pour l’ESP32 CAM.</p>
+<p><img alt="Screenshot 2026-08-25 031724.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_031724.png" /></p>
+<p><img alt="Screenshot 2026-08-25 031700.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_031700.png" /></p>
+<p>La première partie de ce boîtier : le couvercle, comporte <strong>3</strong> orifices respectivement pour la caméra, la torche et enfin le dissipateur thermique.</p>
+<p><img alt="Screenshot 2026-08-25 031748.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_031748.png" /></p>
+<p>En ce qui concerne la deuxième partie du boîtier : le <strong>corps</strong>, il comporte des ouvertures pour les broches du capteur, un trou pour faire passer le câble de l'antenne et un autre trou pour le bout type C pour la connexion filaire avec l’<strong>ESP32 CAM.</strong></p>
+<p><img alt="Screenshot 2026-08-25 052806.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_052806.png" /></p>
+<ul>
+<li><strong>Compartiment 2:</strong></li>
+</ul>
+<p>En tant que deuxième compartiment du mécanisme, ce bloc est conçu de manière à <strong>compléter</strong> le compartiment 1 en <strong>offrant</strong> un espace pour contenir le réservoir des déchets, ainsi que tout le kit électronique <strong>comportant</strong> le driver, les piles et les régulateurs. À l’arrière, un espace a été <strong>créé</strong> pour y loger un interrupteur.</p>
+<p><img alt="Screenshot 2026-08-25 031852.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_031852.png" /></p>
+<p><img alt="Screenshot 2026-08-25 031837.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_031837.png" /></p>
+<ul>
+<li><strong>Support des piles</strong></li>
+</ul>
+<p>Il s’agit là d’un composant essentiel, responsable du maintien des piles pour l'alimentation <strong>complète</strong> du circuit. <strong>Il</strong> a été conçu pour loger en tout et pour <strong>tout</strong> 04 piles lithium-ion. Pour le design, nous avons pris le soin de renseigner les marques de fixation pour le montage en série des piles. De même, des conduits <strong>ont</strong> été introduits pour faire passer les câbles de connexion.</p>
+<p><img alt="Screenshot 2026-08-25 032120.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_032120.png" /></p>
+<p><img alt="Screenshot 2026-08-25 032133.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_032133.png" /></p>
+<ul>
+<li><strong>Bout d'aspiration</strong></li>
+</ul>
+<p>En tant que  pièce de conduit coudé à section rectangulaire, elle relie l'embouchure d'aspiration au reste du circuit interne de l'aspirateur. Sa forme angulaire  permet de rediriger le flux d'air aspiré depuis le sol vers le corps de l'appareil, tout en minimisant les pertes de charge grâce à une transition progressive entre les deux segments. La section creuse et rectangulaire assure le passage de l'air et des débris aspirés jusqu'au système de filtration/stockage.</p>
+<p><img alt="Screenshot 2026-08-25 032320.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_032320.png" /></p>
+<p><img alt="Screenshot 2026-08-25 032337.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_032337.png" /></p>
+<ul>
+<li><strong>Support - régulateur</strong></li>
+</ul>
+<p>Il permet de viser solidement les régulateurs. </p>
+<p><img alt="Screenshot 2026-08-25 032250.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_032250.png" /></p>
+<ul>
+<li><strong>Grille d'évacuation arrière</strong></li>
+</ul>
+<p>La grille d'évacuation est une plaque rectangulaire plate de 76mm × 151,8 mm, réalisée en PLA, destinée à être positionnée à l'arrière du mécanisme. Elle intègre trois fentes oblongues parallèles, traversant toute l'épaisseur de la plaque, dont les extrémités arrondies limitent les concentrations de contraintes et facilitent l'écoulement de l'air. Ces ouvertures permettent l'évacuation de l'air aspiré une fois celui-ci filtré, tout en assurant une certaine rigidité structurelle à la pièce grâce aux sections pleines conservées entre les fentes.</p>
+<p><img alt="Screenshot 2026-08-25 033234.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_033234.png" /></p>
+<ul>
+<li><strong>Couvercle du compartiment 2</strong></li>
+</ul>
+<p>Le couvercle est une pièce plate composée de deux panneaux articulés autour d'une ligne de pliure centrale, formant un couvercle en deux volets. Il vient se refermer sur la partie supérieure du compartiment 2 (le bloc jaune), qu'il recouvre et protège. Un petit ergot/languette de fixation, replié perpendiculairement au niveau de la charnière, permet de le clipser ou de le verrouiller sur le compartiment lorsqu'il est fermé.</p>
+<p><img alt="Screenshot 2026-08-25 052911.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_052911.png" /></p>
+<ul>
+<li><strong>Pièce de jonction compartiment 1 / compartiment 2</strong></li>
+</ul>
+<p>Cette pièce a une forme allongée en « os » (ou haltère), avec deux extrémités arrondies plus larges reliées par une section centrale rectiligne plus étroite. Elle sert de joint entre le compartiment 1 et le compartiment 2, chaque extrémité arrondie venant probablement s'insérer ou se fixer dans l'un des deux compartiments.</p>
+<p><img alt="Screenshot 2026-08-25 052846.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_052846.png" /></p>
+<p><img alt="Screenshot 2026-08-25 052856.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_052856.png" /></p>
+<ul>
+<li><strong>Équerre de liaison châssis / moteur</strong></li>
+</ul>
+<p>Cette pièce est une équerre en L, réalisée à partir d'une plaque pliée à 90°, servant à fixer les moteurs (représentés en jaune) au châssis de l'aspirateur. Le côté horizontal, percé de deux trous, se fixe sur le châssis, tandis que le côté vertical, plus long et percé de deux trous supplémentaires, accueille le moteur. Cette configuration en équerre permet de maintenir le moteur en position perpendiculaire au plan du châssis tout en assurant une fixation rigide et stable.</p>
+<p><img alt="Screenshot 2026-08-25 053159.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_053159.png" /></p>
+<ul>
+<li><strong>Motoréducteur et roue (composants GrabCAD)</strong></li>
+</ul>
+<p>Ces deux pièces, importées depuis GrabCAD, forment l'unité de propulsion du châssis : le motoréducteur génère le couple moteur, tandis que la roue, montée sur son arbre de sortie, le transforme en déplacement effectif. Elles correspondent aux éléments de mobilité issus du kit robotique ZYC0024, déjà utilisé sur les versions précédentes du projet.</p>
+<p><img alt="Screenshot 2026-08-25 053229.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_053229.png" /></p>
+<p><img alt="Screenshot 2026-08-25 053304.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_053304.png" /></p>
+<h3 id="assemblage-final">Assemblage final</h3>
+<p>Cette vue représente l'assemblage complet de l'aspirateur sous SolidWorks, où l'ensemble des pièces précédemment décrites — châssis, compartiments, roues, motoréducteurs et éléments de liaison — a été positionné et contraint via des relations d'assemblage (concentricité, coïncidence, etc.) pour former le rendu final du prototype.</p>
+<p><img alt="Screenshot 2026-08-25 053534.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_053534.png" /></p>
+<p><img alt="Screenshot 2026-08-25 053548.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_053548.png" /></p>
+<p><img alt="Screenshot 2026-08-25 053906.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_053906.png" /></p>
+<p><strong>Régulateur 12V :</strong> </p>
+<p>Il permet de réguler selon l'usage de l’aspirateur la tension délivrée par les piles </p>
+<p><img alt="Screenshot 2026-08-25 054046.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_054046.png" /></p>
+<p><strong>Caméra ESP32 :</strong> </p>
+<p>Elle donne une visibilité à l’aspirateur sur l’endroit à aspirer .</p>
+<p><img alt="Screenshot 2026-08-25 054152.png" src="../Prototype%20V3%20%28In%20process%E2%80%A6%29/Screenshot_2026-08-25_054152.png" /></p>
+<p><strong>Driver :</strong> </p>
+<p>Il commande les moteurs des roues .</p>
+<h3 id="electronique-alimentation-et-cablage">Électronique — Alimentation et câblage</h3>
+<p>Contrairement au prototype précédent qui reposait sur deux alimentations distinctes pour le moteur d'aspiration et le système de déplacement, ce prototype intègre une alimentation unique, conçue par l'équipe à partir de 4 piles lithium-ion, gérant l'ensemble du système. Par ailleurs, les câbles jumpers ont été remplacés par des câbles soudés directement par l'équipe, offrant des connexions plus fiables et plus stables.</p>
+<h2 id="resultats-des-tests">📊 Résultats des tests</h2>
+<p>La puissance et le débit d'air se sont révélés en nette amélioration par rapport au prototype précédent, sans toutefois atteindre le niveau escompté : le système reste capable d'aspirer de petits débris, mais peine encore face à des déchets plus massifs, comme les protections en tissu blanc que l'on retrouve dans les appareils neufs.</p>
+<p>L'autonomie mesurée avoisine les 30 minutes, avec un système d'alimentation désormais plus facilement modulable. Sur le plan mécanique, la structure s'est montrée très résistante, confirmant la solidité du châssis et des pièces assemblées.</p>
+<p>Concernant l'étanchéité, le circuit d'air se comporte globalement bien, avec une navigation stable sur l'ensemble des types de sols testés ; quelques fuites d'air subsistent au niveau des jonctions, mais restent minimes.</p>
+<p>Du côté du contrôle électronique, le code de navigation présente encore des défaillances sur lesquelles l'équipe continue de travailler : les commandes de direction envoyées depuis l'application mobile ne répondent pas systématiquement, certaines directions restant pour l'instant non fonctionnelles.</p>
+<h2 id="ameliorations-pour-la-version-suivante">💡 Améliorations pour la version suivante.</h2>
+<p>Sur la base des résultats obtenus, l'équipe entend engager les corrections suivantes pour la prochaine itération :</p>
+<ul>
+<li>Revoir l'embouchure d'aspiration et le diamètre du conduit, et envisager une puissance moteur supplémentaire ou une meilleure gestion de la dépression, afin d'élargir la capacité d'aspiration au-delà des petits débris ;</li>
+<li>Renforcer les joints aux points de jonction entre les blocs (notamment entre le bloc de stockage et le bloc moteur), afin de réduire davantage les fuites d'air constatées et de préserver au mieux la dépression du circuit ;</li>
+<li>Fiabiliser le code de navigation par un débogage approfondi de la gestion des commandes de direction, afin de garantir une réponse systématique de l'application mobile à chaque instruction envoyée, en particulier sur les directions actuellement défaillantes.</li>
+</ul>
+<h2 id="annexes">Annexes</h2>
+<h4 id="fichiers-cao">Fichiers CAO</h4>
+<p>L'ensemble des pièces modélisées dans le cadre de ce projet est disponible sur le Drive suivant :</p>
+<p><a href="https://drive.google.com/drive/folders/1-vHpUSCrvxs6SL9zksyHLbdsC1fU7P0H?usp=sharing">IMSP-Aspirateur-V3 - Google Drive</a></p>
+<p>Les fichiers sont fournis au format SolidWorks (.SLDPRT) et doivent être exporté en STL pour impression 3D.</p>
+<h4 id="video-recapitulative">Vidéo récapitulative</h4>
+<p><a href="https://drive.google.com/file/d/1TWKlcn0WtR0H-IXEdxd0yOlNYWc2HX2j/view?usp=drive_link">https://drive.google.com/file/d/1TWKlcn0WtR0H-IXEdxd0yOlNYWc2HX2j/view?usp=drive_link</a></p>
+<h4 id="ouverture-vers-le-prototype-suivant">Ouverture vers le prototype suivant</h4>
+<p>Au-delà de ces corrections, le prochain prototype visera à franchir une nouvelle étape avec l'intégration de la navigation autonome, à travers l'ajout de capteurs dédiés permettant à l'aspirateur de percevoir son environnement et de s'y déplacer sans intervention manuelle constante.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

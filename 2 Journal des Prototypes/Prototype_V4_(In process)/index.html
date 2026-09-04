@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Prototype V4 (In process) - Aspirateur IMSP Cleanbot</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Aspirateur IMSP Cleanbot</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../1%20Vision-Objectifs" class="nav-link">1. Vision & Objectifs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../2%20Journal-Prototypes" class="nav-link">2. Journal des Prototypes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../3%20Ressources-Recherches" class="nav-link">3. Ressources & Recherches</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#prototype-v4-in-process" class="nav-link">Prototype V4 (In process)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objectifs-de-cette-version" class="nav-link">🎯 Objectifs de cette version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#presentation-du-prototype" class="nav-link">🛠️ Présentation du prototype</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#etat-davancement" class="nav-link">📊 État d’avancement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#suite-du-developpement" class="nav-link">💡 Suite du développement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#difficultes-rencontrees" class="nav-link">🚧 Difficultés rencontrées</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="prototype-v4-in-process">Prototype V4 (In process)</h1>
+<p>Created: August 18, 2026 10:11 AM
+Status: In progress</p>
+<h2 id="objectifs-de-cette-version">🎯 Objectifs de cette version</h2>
+<p>Le prototype antérieur constituait une base fonctionnelle mais restait largement dépendant de l'intervention de l'utilisateur. Son automatisation et son évolutivité apparaissaient limitées. De plus, sa conception mécanique limitait le passage dans certains espaces étroits, réduisant ainsi l'efficacité du nettoyage.</p>
+<p>La version actuelle vise donc à améliorer à la fois le volet informatique, le volet mécanique et le volet électronique, en mettant l'accent sur l'automatisation et l'optimisation de la structure pour  faciliter les déplacements dans des espaces plus restreints et simplifier la maintenance. </p>
+<h2 id="presentation-du-prototype">🛠️ Présentation du prototype</h2>
+<h3 id="11-volet-informatique">1.1. Volet informatique</h3>
+<p>Le travail à réaliser sur le volet informatique consiste avant tout à automatiser le fonctionnement du robot afin qu’il puisse évoluer dans son environnement sans intervention humaine constante. Le prototype précédent exigeait l’action de l’utilisateur pour piloter le robot et orienter ses déplacements. Cette nouvelle version doit donc intégrer une <strong>logique de commande</strong> capable de recevoir les informations des différents <strong>capteurs</strong>, de les analyser et de prendre automatiquement les décisions nécessaires au déplacement du robot.</p>
+<p>L’objectif est ainsi de permettre au robot d’effectuer une opération de nettoyage de manière autonome dans une pièce. Une fois lancé, il devra se déplacer seul, détecter les obstacles sur son trajet, adapter sa trajectoire lorsque la situation l’exige, puis poursuivre son déplacement afin de couvrir progressivement l’espace à nettoyer. Il ne devra donc plus dépendre d’une personne pour choisir sa direction ou intervenir à chaque rencontre avec un obstacle.</p>
+<p>La mise en œuvre de cette fonctionnalité requiert un <strong>programme de commande</strong> capable de gérer simultanément les informations issues des <strong>capteurs</strong> et les différents <strong>actionneurs</strong> du robot. Le système devra notamment déterminer les actions à éffectuer à partir des distances mesurées autour du robot. Lorsqu’un obstacle est détecté, le programme devra analyser sa position et commander les <strong>moteurs</strong> pour ajuster la trajectoire de façon appropriée. Il devra également permettre au robot de reprendre sa progression après l’évitement, afin de poursuivre sa tâche de nettoyage.</p>
+<p>Le travail informatique porte ainsi principalement sur la conception et l’intégration de l’<strong>algorithme de navigation autonome</strong>. Celui-ci devra assurer la communication entre les différents éléments du prototype, traiter les données des capteurs et piloter les moteurs, ainsi que le <strong>servomoteur</strong> chargé d’orienter le <strong>capteur frontal</strong>. Cette partie constitue le cœur de l’automatisation du prototype.</p>
+<h3 id="12-volet-mecanique">1.2. Volet mécanique</h3>
+<p>Sur le plan mécanique, le travail consiste à revoir plusieurs éléments du prototype précédent afin de mieux l’adapter à son environnement d’utilisation. La première évolution concerne la <strong>structure générale du robot</strong> : la conception précédente, en raison de ses dimensions et de sa configuration, limitait l’accès à certains espaces, notamment sous les meubles et dans les passages étroits.</p>
+<p>La nouvelle conception devra donc privilégier une structure plus compacte, mieux adaptée aux contraintes de déplacement d’un robot aspirateur. Une réduction de la longueur, de la largeur et de la hauteur sera envisagée pour faciliter le passage dans les zones difficiles d’accès. Cette diminution devra toutefois conserver un volume suffisant pour intégrer les composants électroniques, les <strong>moteurs</strong>, le <strong>système d’aspiration</strong> et l’ensemble des éléments nécessaires au fonctionnement. L’enjeu sera de trouver un compromis entre <strong>compacité, accessibilité et intégration des composants</strong>.</p>
+<p>La structure mécanique devra également être pensée pour simplifier l’assemblage, le démontage et la maintenance. Les composants devront rester accessibles sans démontage excessif, afin de faciliter les interventions sur les moteurs, les capteurs, l’alimentation ou le système d’aspiration en cas de panne ou d’évolution.</p>
+<p>Une autre amélioration concerne la mobilité. Contrairement à la configuration précédente, le nouveau prototype adoptera une architecture composée de <strong>deux roues motrices à l’arrière et d’une roue folle à l’avant</strong>. Cette disposition assurera le déplacement tout en simplifiant la propulsion et les changements de direction. Les deux roues motrices pourront être commandées indépendamment, ce qui permettra d’ajuster la trajectoire et d’effectuer des rotations en fonction des décisions du système d’automatisation.</p>
+<p>Enfin, le système d’aspiration constitue également un point à améliorer. Sur le prototype précédent, l’orifice d’aspiration ne couvrait pas une surface suffisante lors du passage du robot. Une modification est donc envisagée afin d’augmenter la largeur de la zone d’aspiration et, ainsi, la quantité de saletés pouvant être récupérée. La nouvelle conception devra mieux exploiter la largeur du robot tout en maintenant une aspiration efficace.</p>
+<p>L’ensemble de ces évolutions mécaniques vise à obtenir un robot <strong>plus compact, plus simple à maintenir, plus mobile et plus performant dans le nettoyage</strong>, tout en permettant l’intégration des nouveaux éléments nécessaires à son automatisation.</p>
+<h3 id="13-volet-electronique">1.3. Volet électronique</h3>
+<p>Le travail électronique consiste principalement à mettre en place le système permettant au robot de percevoir son environnement. Pour rendre le déplacement autonome, le robot doit détecter les obstacles qui l’entourent et disposer d’informations suffisantes pour adapter sa trajectoire. Des <strong>capteurs ultrasoniques</strong> seront donc intégrés au prototype afin de mesurer en continu la distance entre le robot et les obstacles, dans différentes directions.</p>
+<p>Le dispositif s’appuie sur plusieurs <strong>capteurs ultrasoniques</strong> répartis autour du robot. Un capteurs sera placé à l’avant monté sur un <strong>servomoteur</strong> : cette configuration permettra de l’orienter et d’élargir la zone explorée. Le servomoteur balaiera ainsi l’environnement et recueillera des informations sur des obstacles qui ne se trouvent pas nécessairement dans l’axe de déplacement.</p>
+<p>Deux autres capteurs seront installés latéralement, l’un à droite et l’autre à gauche. Ils surveilleront les côtés du robot et fourniront des informations complémentaires lors des déplacements et des changements de direction, afin notamment d’éviter qu’un obstacle latéral ne soit détecté trop tard.</p>
+<p>Un quatrième capteur sera placé à l’arrière pour contrôler la zone située derrière le robot. Cette information sera particulièrement utile lors des manœuvres de recul ou des rotations, en offrant une perception plus complète de l’environnement immédiat.</p>
+<p>Les mesures fournies par ces capteurs devront être transmises au système de commande, qui les interprétera pour évaluer la situation du robot. Selon la distance mesurée et la position de l’obstacle, le système pourra décider de poursuivre le déplacement, de ralentir, de modifier la trajectoire, de tourner ou d’effectuer toute manœuvre nécessaire pour éviter une collision.</p>
+<p>L’intégration de ces capteurs constitue donc un élément essentiel de l’automatisation du prototype. Ils permettront au robot de ne plus fonctionner uniquement selon des commandes prédéfinies, mais de <strong>réagir aux informations provenant de son environnement</strong>. Le système électronique devra ainsi assurer une acquisition fiable des données et leur transmission au système de commande, afin de permettre une prise de décision adaptée.</p>
+<p>En complément du système de détection, <strong>l’alimentation électrique du prototype sera également revue</strong>. Cette évolution vise à adapter la source d’alimentation aux besoins des différents composants et à améliorer l’autonomie énergétique. Le choix et le dimensionnement devront garantir une durée de fonctionnement suffisante pour réaliser une session de nettoyage avec un minimum d’intervention humaine, tout en tenant compte de la consommation des <strong>moteurs</strong>, du <strong>système d’aspiration</strong>, des <strong>capteurs</strong>, du <strong>servomoteur</strong> et du <strong>système de commande</strong>.</p>
+<h3 id="14-integration-des-differents-volets">1.4. Intégration des différents volets</h3>
+<p>La réalisation du prototype repose finalement sur l'interaction entre les trois volets précédents. Le système électronique permettra au robot de recueillir les informations relatives à son environnement grâce aux <strong>capteurs.</strong> Ces informations seront ensuite traitées par le système informatique afin de déterminer l'action appropriée. Les décisions prises seront finalement exécutées par les éléments mécaniques, notamment les moteurs et le système de mobilité.</p>
+<p>On obtient ainsi une chaîne de fonctionnement basée sur le principe :</p>
+<p><strong>Perception de l'environnement → Traitement des informations → Prise de décision → Commande des mouvements → Poursuite du nettoyage.</strong></p>
+<p>L'objectif du travail est donc de faire fonctionner ces différents éléments comme un ensemble cohérent. La réussite de l'automatisation ne dépendra pas uniquement du fonctionnement individuel des composants, mais de leur bonne intégration au sein du prototype. Le robot devra progressivement être capable de percevoir son environnement, d'interpréter les informations reçues et d'adapter son comportement en conséquence.</p>
+<h2 id="etat-davancement">📊 État d’avancement</h2>
+<h4 id="21-volet-informatique">2.1. Volet informatique</h4>
+<p>Les premiers travaux réalisés sur le volet informatique ont porté sur l’intégration des quatre capteurs ultrasoniques avec la carte ESP32. Un programme permettant de lire les informations fournies par les quatre capteurs et d’obtenir les distances mesurées a été développé et testé.</p>
+<p>Un travail spécifique a également été réalisé sur le capteur ultrasonique frontal. Celui-ci est monté sur un servomoteur afin de permettre son orientation dans différentes directions. Un algorithme de commande du servomoteur a ainsi été développé afin de synchroniser son mouvement avec la lecture du capteur ultrasonique frontal. Cette synchronisation permet au capteur d’effectuer un balayage de l’environnement tout en associant chaque mesure à la position correspondante du servomoteur.</p>
+<p>Ces premiers travaux permettent donc de disposer des bases nécessaires à la perception de l’environnement du robot. Toutefois, l’algorithme de navigation autonome, qui devra exploiter l’ensemble de ces informations pour prendre les décisions de déplacement du robot, est encore en cours de développement et n’est pas encore finalisé.</p>
+<p>En parallèle, des travaux ont été menés sur la <strong>mise en mouvement du robot</strong>. Un algorithme de commande des moteurs a été développé afin d'expérimenter les différents mouvements possibles et de comprendre le fonctionnement du <strong>driver L298N</strong>, utilisé pour assurer la commande des moteurs. Cette phase d’expérimentation a été réalisée à l’aide du <strong>kit ZYC-0024</strong>, utilisé comme support de test en attendant la fabrication de la structure définitive du robot par impression 3D. Cette approche a permis de tester la commande des moteurs et de vérifier le comportement du système de mobilité avant son intégration dans le prototype final.</p>
+<p>Ces différents travaux permettent ainsi de poser les bases du <strong>système d’automatisation</strong>, aussi bien pour la perception de l’environnement que pour la commande des déplacements. Toutefois, l’algorithme de navigation autonome, qui devra combiner les informations des capteurs avec la commande des moteurs afin de permettre au robot de prendre ses décisions de manière autonome, est encore en cours de développement et n’est pas encore finalisé.</p>
+<p><a href="../../3%20Ressources%20&amp;%20Recherches/ESP32%20&amp;%205%20Ultrasons%20327ae47a9a068090aecdc7275273c7f1.md">ESP32 &amp; 5 Ultrasons</a> </p>
+<p><a href="../../3%20Ressources%20&amp;%20Recherches/ESP32%20&amp;%20Driver%20327ae47a9a06802186bef176ae29fb51.md">ESP32 &amp; Driver</a> </p>
+<p><a href="../../3%20Ressources%20&amp;%20Recherches/Servo-moteur&amp;capteur%20ultrason%20frontal%20331ae47a9a0680c49319fcb4e1f8f5a0.md">Servo-moteur&amp;capteur ultrason frontal</a> </p>
+<p><img alt=" **Le kit ZYC-0024**
+" src="../Prototype%20V4%20%28In%20process%29/image-1773851016880.jpg.jpeg" /></p>
+<p><strong>Le kit ZYC-0024</strong></p>
+<h4 id="22-volet-mecanique">2.2. Volet mécanique</h4>
+<p>Sur le volet mécanique, la configuration générale du nouveau prototype a été définie en tenant compte des différentes améliorations prévues. La nouvelle structure, plus compacte et adaptée au passage dans des espaces étroits, ainsi que le système de mobilité à trois roues, ont été retenus.</p>
+<p>La réalisation est actuellement en phase de modélisation sur <strong>SolidWorks</strong>. Les différentes pièces constituant le robot sont progressivement modélisées en tenant compte des dimensions et des contraintes d’intégration des différents composants. Une fois les modèles finalisés, les pièces seront fabriquées par impression 3D, puis assemblées afin de constituer la structure complète du prototype.</p>
+<p>À ce stade, le volet mécanique est donc <strong>entièrement en cours de réalisation</strong> et n’est pas encore finalisé.</p>
+<h4 id="23-volet-electronique">2.3. Volet électronique</h4>
+<p>Concernant le volet électronique, les travaux ont principalement porté sur la définition du câblage et du système d’alimentation du prototype. Une solution d’alimentation basée sur des piles rechargeables a été étudiée afin de répondre aux besoins énergétiques des différents composants du robot et de permettre une durée de fonctionnement suffisamment longue.</p>
+<p>Le système permettant l’assemblage des six piles ainsi que leur recharge a également été identifié. Ces éléments constituent la base du futur système d’alimentation du prototype et devront être intégrés avec les autres composants lors de l’assemblage final.</p>
+<p>Le volet électronique est donc actuellement au stade de la préparation et de la définition de l’intégration des différents éléments. Sa finalisation dépendra notamment de l’avancement de l’assemblage mécanique et de l'intégration complète du système de commande.</p>
+<h2 id="suite-du-developpement">💡 Suite du développement</h2>
+<p>La suite du développement consistera à finaliser progressivement les différents volets du prototype afin de parvenir à leur intégration complète. </p>
+<p>Sur le <strong>volet informatique</strong>, les travaux porteront principalement sur la finalisation de l’algorithme de navigation autonome. Il s’agira de combiner les informations fournies par les cinq capteurs ultrasoniques avec la commande des moteurs afin de permettre au robot de prendre automatiquement des décisions concernant sa trajectoire, d’éviter les obstacles et de poursuivre son déplacement de manière autonome.</p>
+<p>Sur le <strong>volet mécanique</strong>, la prochaine étape sera de finaliser la modélisation des différentes pièces sur <strong>SolidWorks</strong>, puis de procéder à leur fabrication par <strong>impression 3D</strong>. Les pièces seront ensuite assemblées afin de constituer la structure complète du robot et d’intégrer les différents composants, notamment les moteurs, les capteurs, le système d’aspiration et les éléments électroniques.</p>
+<p>Sur le <strong>volet électronique</strong>, il faudra poursuivre l’intégration du système de câblage et de l’alimentation rechargeable, puis assurer la connexion de l’ensemble des composants avec la <strong>carte ESP32</strong> et le <strong>driver L298N</strong>. Des essais seront nécessaires afin de vérifier la stabilité de l’alimentation et le bon fonctionnement de chaque élément une fois intégré au prototype.</p>
+<p>Enfin, une phase d’<strong>intégration et de validation globale</strong> sera réalisée après l’assemblage du prototype. Elle permettra de vérifier le fonctionnement coordonné des capteurs, du système de commande, de la mobilité et du système d’aspiration. Des essais en conditions réelles devront ensuite permettre d’identifier les éventuels dysfonctionnements et d’apporter les corrections nécessaires. Cette étape devra conduire progressivement à un prototype capable d’effectuer une opération de nettoyage de manière autonome, conformément à l’objectif fixé pour cette nouvelle version.</p>
+<h2 id="difficultes-rencontrees">🚧 Difficultés rencontrées</h2>
+<p>Au cours du développement, plusieurs difficultés ont été rencontrées sur les plans informatique, mécanique et électronique, influençant certaines décisions et nécessitant des ajustements au fil de l'avancement. Sur le volet informatique, le développement de l’algorithme de navigation autonome s’est révélé complexe, notamment pour interpréter les informations de plusieurs capteurs ultrasoniques et assurer une synchronisation fiable avec les moteurs. Sur le volet mécanique, la conception d'une structure à la fois compacte et suffisamment robuste pour intégrer tous les composants a demandé plusieurs itérations de modélisation. La fabrication des pièces par impression 3D rallonge également les délais de réalisation. Sur le plan électronique, les capteurs initialement envisagés n'étant pas disponibles, il a fallu se tourner vers d'autres solutions, notamment l'utilisation de capteurs ultrasoniques. Le dimensionnement du système d’alimentation a également constitué un défi, devant concilier autonomie, dimensions réduites et consommation des composants. Enfin, le projet a dû composer avec des contraintes de temps, limitant l'avancement de certaines phases de conception et de tests. Cette formulation présente honnêtement les obstacles rencontrés, tout en montrant comment l’équipe s’est adaptée afin de poursuivre le développement du prototype.</p>
+<p><img alt="Screenshot 2026-09-04 124501.png" src="../Prototype%20V4%20%28In%20process%29/Screenshot%202026-09-04%20124501.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
